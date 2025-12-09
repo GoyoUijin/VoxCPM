@@ -278,7 +278,7 @@ class VoxCPMModel(nn.Module):
         audio_feat = audio_feat.unsqueeze(0).to(self.device).to(get_dtype(self.config.dtype))
         audio_mask = audio_mask.unsqueeze(0).to(self.device)
 
-        target_text_length = len(self.text_tokenizer(target_text))
+        target_text_length = len(target_text)
         
         retry_badcase_times = 0
         while retry_badcase_times < retry_badcase_max_times:
@@ -492,7 +492,7 @@ class VoxCPMModel(nn.Module):
         audio_mask = audio_mask.unsqueeze(0).to(self.device)
     
         # run inference
-        target_text_length = len(self.text_tokenizer(target_text))
+        target_text_length = len(target_text)
         retry_badcase_times = 0
         while retry_badcase_times < retry_badcase_max_times:
             inference_result = self._inference(
